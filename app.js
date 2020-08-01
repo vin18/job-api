@@ -13,6 +13,8 @@ connectDB();
 // Importing all routes
 const jobs = require('./routes/jobs');
 
+app.use(express.json());
+
 app.use('/api/v1/', jobs);
 
 const PORT = process.env.PORT || 5000;
