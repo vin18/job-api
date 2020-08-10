@@ -21,10 +21,12 @@ connectDB();
 
 // Importing all routes
 const jobs = require('./routes/jobs');
+const auth = require('./routes/auth');
 
 app.use(express.json());
 
 app.use('/api/v1/', jobs);
+app.use('/api/v1/', auth);
 
 // Handle unhandled routes
 app.all('*', (req, res, next) => {
