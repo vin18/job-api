@@ -1,4 +1,5 @@
 const User = require('../models/Users');
+const sendToken = require('../utils/jwtToken');
 const catchAsync = require('../middlewares/catchAsync');
 const ErrorHandler = require('../utils/errorHandler');
 
@@ -15,13 +16,7 @@ exports.registerUser = catchAsync(async (req, res, next) => {
   });
 
   // Create JWT Token
-  const token = user.getJwtToken();
-
-  res.status(200).json({
-    success: true,
-    message: 'User is registered',
-    token,
-  });
+  sendToken(user, 200, res);
 });
 
 // @desc  Login User
@@ -51,10 +46,5 @@ exports.loginUser = catchAsync(async (req, res, next) => {
   }
 
   // Create JSON Web Token
-  const token = user.getJwtToken();
-
-  res.status(200).json({
-    status: true,
-    token,
-  });
+  sendToken(user, 200, res);
 });

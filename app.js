@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const colors = require('colors');
+const cookieParser = require('cookie-parser');
 const connectDB = require('./config/db');
 const errorMiddleware = require('./middlewares/errors');
 const ErrorHandler = require('./utils/errorHandler');
@@ -23,7 +24,11 @@ connectDB();
 const jobs = require('./routes/jobs');
 const auth = require('./routes/auth');
 
+// Body Parser
 app.use(express.json());
+
+// Set cookie parser
+app.use(cookieParser());
 
 app.use('/api/v1/', jobs);
 app.use('/api/v1/', auth);
