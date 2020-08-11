@@ -3,7 +3,7 @@ const User = require('../models/Users');
 const catchAsync = require('./catchAsync');
 const ErrorHandler = require('../utils/errorHandler');
 
-// Check if user is authenticated or not
+// Check if the user is authenticated or not
 exports.isAuthenticatedUser = catchAsync(async (req, res, next) => {
   let token;
 
@@ -16,8 +16,7 @@ exports.isAuthenticatedUser = catchAsync(async (req, res, next) => {
 
   if (!token) {
     return next(
-      new ErrorHandler('Login first to access this resource'),
-      401
+      new ErrorHandler('Login first to access this resource.', 401)
     );
   }
 

@@ -42,6 +42,9 @@ exports.getJob = catchAsync(async (req, res, next) => {
 // @desc  Create a new job
 // @route /api/v1/job/new
 exports.newJob = catchAsync(async (req, res, next) => {
+  // Adding user to body
+  req.body.user = req.user.id;
+
   const job = await Job.create(req.body);
 
   return res.status(200).json({
