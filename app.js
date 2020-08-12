@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const colors = require('colors');
+const fileUpload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
 const connectDB = require('./config/db');
 const errorMiddleware = require('./middlewares/errors');
@@ -30,6 +31,9 @@ app.use(express.json());
 
 // Set cookie parser
 app.use(cookieParser());
+
+// Handle file uploads
+app.use(fileUpload());
 
 app.use('/api/v1/', jobs);
 app.use('/api/v1/', auth);
